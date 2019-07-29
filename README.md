@@ -69,4 +69,4 @@ The YouTube file in the S3 bucket is 0 KB or cannot download the video due to an
 ```
 urllib2.HTTPError: HTTP Error 403: Forbidden
 ```
-See section above regarding PyTube 9.5.X
+See section above regarding PyTube 9.5.X.
