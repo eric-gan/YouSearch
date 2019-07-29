@@ -14,7 +14,7 @@ Otherwise, navigate to a temporary folder and run
 ```
 git clone git://github.com/nficano/pytube.git
 ```
-Next in any text editor, open `/pytube/pytube/mixins.py`. Starting from approximately line 42 to 66, replace the existing code block in the `apply_signature` method with the following code block instead.
+Next in any text editor, open `../pytube/pytube/mixins.py`. Starting from approximately line 42 to 66, replace the existing code block in the `apply_signature` method with the following code block instead.
 ```python
 if ('signature=' in url or 
         ('s' not in stream and 
