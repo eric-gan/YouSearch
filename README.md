@@ -15,7 +15,7 @@ Otherwise, navigate to a temporary folder and run
 git clone git://github.com/nficano/pytube.git
 ```
 Next in any text editor, open `pytube/pytube/mixins.py`. Starting from approximately line 42 to 66, replace the existing similar code with the following code block instead
-```
+```python
         if ('signature=' in url or 
                 ('s' not in stream and 
                  ('&sig=' in url or '&lsig=' in url))):
