@@ -14,7 +14,7 @@ Otherwise, navigate to a temporary folder and run
 ```
 git clone git://github.com/nficano/pytube.git
 ```
-Next in any text editor, open `/pytube/pytube/mixins.py`. Starting from approximately line 42 to 66, replace the existing code block in the `apply_signature` method with the following code block instead
+Next in any text editor, open `/pytube/pytube/mixins.py`. Starting from approximately line 42 to 66, replace the existing code block in the `apply_signature` method with the following code block instead.
 ```python
 if ('signature=' in url or 
         ('s' not in stream and 
@@ -43,7 +43,7 @@ logger.debug(
 )
 stream_manifest[i]['url'] = url + '&sig=' + signature
 ``` 
-After that, open `/pytube/pytube/cipher.py`. Starting from line 38, replace the existing pattern in the method `get_initial_function_name` with the folloinwg pattern
+After that, open `../pytube/pytube/cipher.py`. Starting from line 38, replace the existing pattern in the method `get_initial_function_name` with the following pattern.
 ```python
 pattern = [
 r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
@@ -59,11 +59,10 @@ r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$
 r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\('
 ]
 ``` 
-Lastly in `/pytube/` directory, open Terminal and run
+Lastly in `../pytube/` directory, open Terminal and run
 ```
 pip install .
 ```
-
 The download process for YouTube videos should now be functional
 ## Debugging
 The YouTube file in the S3 bucket is 0 KB or cannot download the video due to an error with `urllib`.
