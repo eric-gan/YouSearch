@@ -28,8 +28,4 @@ def transcribe_file(link):
         time.sleep(5)
     print(status)
 
-transcribe_file('https://www.youtube.com/watch?v=lzkKzZmRZk8')
-
-
-
-
+transcribe_file('https://www.youtube.com/watch?v=QU3rL5-lj2Y')

@@ -22,4 +22,4 @@ def download_video(link):
     s3.upload_fileobj(http.request('GET', stream.url, preload_content=False), BUCKET, key)
     return
 
-print(download_video('https://www.youtube.com/watch?v=NsKaCS3CtsY'))
+print(download_video('https://www.youtube.com/watch?v=QU3rL5-lj2Y'))
