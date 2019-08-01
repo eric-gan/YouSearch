@@ -9,13 +9,12 @@ def homepage():
 
 @app.route('/', methods=['POST'])
 def get_video():
-    print('dklfjal;skdjf')
     video_input = request.form['search']
     print(video_input)
-    return results(video=video_input)
+    return render_video(video=video_input)
 
 @app.route('/results/')
-def results(video=None):
+def render_video(video=None):
     prefix = 'https://www.youtube.com/embed/'
     video_tag = video.split('=')[1]
     video_embed = prefix + video_tag

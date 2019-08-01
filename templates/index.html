@@ -52,8 +52,10 @@
 								<label for="search">Search</label>
 									<input type="text" name="search" id="search">
 								<br />
+							</form>
+							<form action="{{ url_for('get_video') }}" method="post">
 								<ul class="actions">
-									<li><a href="results.html" class="button primary">Search</a></li>
+									<li><a href="{{url_for('get_video')}}" class="button primary">Search</a></li>
 									<li><a href="#" class="button">Learn More</a></li>
 								</ul>
 							</form>
