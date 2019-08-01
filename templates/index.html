@@ -49,15 +49,10 @@
 						</div>
 						<div class="inner">
 							<form method="POST">
-								<label for="search">Search</label>
+								<label for="search">Enter a valid YouTube Video link below</label>
 									<input type="text" name="search" id="search">
-								<br />
-							</form>
-							<form action="{{ url_for('get_video') }}" method="post">
-								<ul class="actions">
-									<li><a href="{{url_for('get_video')}}" class="button primary">Search</a></li>
-									<li><a href="#" class="button">Learn More</a></li>
-								</ul>
+									<br />
+									<input type="submit" name="search_button" value="Let's Go" />
 							</form>
 						</div>
 					</section>

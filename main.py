@@ -16,7 +16,11 @@ def get_video():
 @app.route('/results/')
 def render_video(video=None):
     prefix = 'https://www.youtube.com/embed/'
-    video_tag = video.split('=')[1]
+    try:
+        video_tag = video.split('=')[1]
+    except:
+        print('Please enter a valid YouTube link')
+        return render_template('index.html')
     video_embed = prefix + video_tag
     return render_template('results.html', video=video_embed)
 
