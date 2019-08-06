@@ -8,9 +8,8 @@ comprehend = boto3.client('comprehend', aws_access_key_id=utils.ACCESS_KEY,
     aws_secret_access_key=utils.SECRET_ACCESS_KEY, region_name=utils.REGION_NAME)
 
 
-def get_transcripts(link):
-    v_id = link.split('=')[-1]
-    json_filename = v_id + '.json'
+def get_transcripts(video_tag):
+    json_filename = video_tag + '.json'
     json_file = s3.get_object(Bucket=utils.BUCKET, Key=json_filename)
     json_content = json_file['Body'].read().decode('utf-8')
     json_data = json.loads(json_content)

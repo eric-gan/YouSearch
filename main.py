@@ -4,7 +4,7 @@ from botocore.exceptions import ClientError
 import os, threading, json
 import boto3
 
-import youtube_to_s3, analyze_transcripts, utils
+import youtube_to_s3, transcribe_audio, analyze_transcripts, utils
 
 s3 = boto3.client('s3', aws_access_key_id=utils.ACCESS_KEY, 
     aws_secret_access_key=utils.SECRET_ACCESS_KEY, region_name=utils.REGION_NAME)
@@ -26,7 +26,7 @@ def get_video():
 
 @app.route('/results/<video_tag>', methods=['GET', 'POST'])
 def results(video_tag):
-    # to utilize within HTML need to change from "watch" tag to "embed"  
+    # to load video through HTML need to change from "watch" tag to "embed" tag
     prefix = 'https://www.youtube.com/embed/'
     video = prefix + video_tag
     if request.method == 'GET':
@@ -35,11 +35,18 @@ def results(video_tag):
         try:
             s3.head_object(
                 Bucket=utils.BUCKET, Key=video_tag+'.mp4')
-            print('found')
+            print('Found video in S3 bucket, pulling from S3 bucket')
         except ClientError as e:
-            youtube_to_s3.fetch_video(video)
-            print('not found')
-        print(request.form['word_search'])
+            print('Video not found in S3 bucket, uploading video form YouTube to S3 bucket')
+            prefix = 'https://www.youtube.com/watch?v='
+            link = prefix + video_tag
+            youtube_to_s3.fetch_video(link)
+        
+        transcribe_audio.transcribe_file(video_tag)
+        user_word = request.form['word_search']
+        times = analyze_transcripts.get_times(video_tag, user_word)
+        print(times)
+
     return render_template('results.html', video=video)
 
 if __name__ == "__main__":

@@ -13,11 +13,8 @@ def fetch_video(link):
     v_id = link.split('=')[-1]
     yt = YouTube(link)
     stream = yt.streams.filter(progressive=True, file_extension="mp4").all()[-1]
-    print(stream.url)
     key = v_id + '.mp4'
 
     http = urllib3.PoolManager()
     s3.upload_fileobj(http.request('GET', stream.url, preload_content=False), utils.BUCKET, key)
     return
-
-#https://www.youtube.com/watch?v=gsC6hB6az10
