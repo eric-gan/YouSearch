@@ -37,7 +37,7 @@ def results(video_tag):
                 Bucket=utils.BUCKET, Key=video_tag+'.mp4')
             print('Found video in S3 bucket, pulling from S3 bucket')
         except ClientError as e:
-            print('Video not found in S3 bucket, uploading video form YouTube to S3 bucket')
+            print('Video not found in S3 bucket, uploading video from YouTube to S3 bucket')
             prefix = 'https://www.youtube.com/watch?v='
             link = prefix + video_tag
             youtube_to_s3.fetch_video(link)
