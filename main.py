@@ -2,8 +2,9 @@ from flask import Flask, request, render_template, redirect, url_for
 from botocore.exceptions import ClientError
 
 import os, threading, json
-import boto3
+import datetime
 
+import boto3
 import youtube_to_s3, transcribe_audio, analyze_transcripts, utils
 
 s3 = boto3.client('s3', aws_access_key_id=utils.ACCESS_KEY, 
@@ -26,11 +27,8 @@ def get_video():
 
 @app.route('/results/<video_tag>', methods=['GET', 'POST'])
 def results(video_tag):
-    # to load video through HTML need to change from "watch" tag to "embed" tag
-    prefix = 'https://www.youtube.com/embed/'
-    video = prefix + video_tag
     if request.method == 'GET':
-        return render_template('results.html', video=video)
+        return render_template('results.html', video=video_tag, zippeD_times=[])
     elif request.method == 'POST':
         try:
             s3.head_object(
@@ -38,16 +36,24 @@ def results(video_tag):
             print('Found video in S3 bucket, pulling from S3 bucket')
         except ClientError as e:
             print('Video not found in S3 bucket, uploading video from YouTube to S3 bucket')
-            prefix = 'https://www.youtube.com/watch?v='
-            link = prefix + video_tag
+            download_prefix = 'https://www.youtube.com/watch?v='
+            link = download_prefix + video_tag
             youtube_to_s3.fetch_video(link)
         
+        # start transcription of video
         transcribe_audio.transcribe_file(video_tag)
         user_word = request.form['word_search']
         times = analyze_transcripts.get_times(video_tag, user_word)
-        print(times)
+        if times is None:
+            return render_template('results.html', video=video_tag, time=[])
 
-    return render_template('results.html', video=video)
+        display_times = [str(datetime.timedelta(seconds=round(float(time)))) for time in times]
+        zipped_times = zip(times, display_times)
+        print(type(times[0]))
+        print(times)
+        return render_template('results.html', video=video_tag, zipped_times=zipped_times)
+
+    return render_template('results.html', video=video_tag, zippeD_times=[])
 
 if __name__ == "__main__":
     app.run(debug=True)
