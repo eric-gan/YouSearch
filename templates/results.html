@@ -44,6 +44,8 @@
 					<section id="wrapper">
 						<header>
 							<div class="inner">
+								<h2>Search & Insights</h2>
+								<p>Find what you're looking for within the video along with video sentiment analysis.</p>
 								<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 								<div id="player"></div>
 
@@ -79,12 +81,13 @@
 								}
 								</script>
 								<form method="POST">
-									<label for="word_search">Enter a word to search for within the video. This process might take some time!</label>
+									<br />
+									<h4 class="major" for="word_search">Enter a word to search for within the video. This process might take some time!</h4>
 										<input type="text" name="word_search" id="word_search">
 										<br />
 										<input type="submit" name="word_search_button" value="Search" />
 								</form>
-								<h3 class="major">Times will be displayed below once job is completed. Click on a time to jump to that point in the video!</h3>
+								<h4 class="major">Times will be displayed below once job is completed. Click on a time to jump to that point in the video!</h4>
 								{% for time, display_time in zipped_times %}
 									<button type="button" onclick="seekTo('{{time}}')">{{display_time}}</button>
 								{% endfor %}
@@ -95,7 +98,7 @@
 							<div class="wrapper">
 								<div class="inner">
 
-									<h3 class="major">Lorem ipsum dolor</h3>
+									<h3 class="major">Video Sentiment Analysis</h3>
 									<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
 
 									<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>

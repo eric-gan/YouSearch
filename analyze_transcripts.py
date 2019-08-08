@@ -17,8 +17,8 @@ def get_transcripts(video_tag):
     word_data = json_data['results']['items']
     return transcript, word_data
 
-def get_times(link, user_word):
-    transcript, word_data = get_transcripts(link)
+def get_times(video_tag, user_word):
+    transcript, word_data = get_transcripts(video_tag)
     if user_word not in transcript and user_word.capitalize() not in transcript:
         print('Cannot find word in the video')
         return
@@ -30,8 +30,13 @@ def get_times(link, user_word):
             times.append(word['start_time'])
     return times
 
-def get_sentiment(link):
-    transcript, _ = get_transcripts(link)
+def get_sentiment(video_tag):
+    transcript, _ = get_transcripts(video_tag)
+    transcript_length = len(transcript.encode('utf-8'))
+    # max length of amazon comprehend request text
+    if transcript_length > 5000:
+        transcript = str(transcript.encode('utf-8')[:5000])
+
     sentiment_json = comprehend.detect_sentiment(
         Text=transcript,
         LanguageCode='en')
@@ -40,5 +45,5 @@ def get_sentiment(link):
     print(sentiment)
 
 
-# print(get_sentiment('https://www.youtube.com/watch?v=QU3rL5-lj2Y'))
+print(get_sentiment('gsC6hB6az10'))
 # print(get_times('https://www.youtube.com/watch?v=QU3rL5-lj2Y', 'just'))

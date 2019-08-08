@@ -28,7 +28,7 @@ def get_video():
 @app.route('/results/<video_tag>', methods=['GET', 'POST'])
 def results(video_tag):
     if request.method == 'GET':
-        return render_template('results.html', video=video_tag, zippeD_times=[])
+        return render_template('results.html', video=video_tag, zipped_times=[])
     elif request.method == 'POST':
         try:
             s3.head_object(
@@ -53,7 +53,7 @@ def results(video_tag):
         print(times)
         return render_template('results.html', video=video_tag, zipped_times=zipped_times)
 
-    return render_template('results.html', video=video_tag, zippeD_times=[])
+    return render_template('results.html', video=video_tag, zipped_times=[])
 
 if __name__ == "__main__":
     app.run(debug=True)
