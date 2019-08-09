@@ -42,9 +42,3 @@ def get_sentiment(video_tag):
         LanguageCode='en')
     sentiment_score, sentiment = sentiment_json['SentimentScore'], sentiment_json['Sentiment']
     return sentiment_score
-    print(sentiment_score)
-    print(sentiment)
-
-
-print(get_sentiment('gsC6hB6az10'))
-# print(get_times('https://www.youtube.com/watch?v=QU3rL5-lj2Y', 'just'))
