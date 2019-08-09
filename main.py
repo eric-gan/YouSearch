@@ -27,8 +27,16 @@ def get_video():
 
 @app.route('/results/<video_tag>', methods=['GET', 'POST'])
 def results(video_tag):
+    if 'sentiment_button' in request.form:
+        sentiment = analyze_transcripts.get_sentiment(video_tag)
+        values = list(sentiment.values())
+        labels = ['Mixed', 'Positive', 'Neutral', 'Negative']
+        colors = ["#EAB126", "#1B7B34", "#1FB58F", "#F24C4E",]
+        return render_template('results.html', video=video_tag, values=values, labels=labels, colors=colors)
+
     if request.method == 'GET':
-        return render_template('results.html', video=video_tag, zipped_times=[])
+        return render_template('results.html', video=video_tag, values=[], labels=[], colors=[])
+
     elif request.method == 'POST':
         try:
             s3.head_object(
@@ -45,15 +53,16 @@ def results(video_tag):
         user_word = request.form['word_search']
         times = analyze_transcripts.get_times(video_tag, user_word)
         if times is None:
-            return render_template('results.html', video=video_tag, time=[])
+            print('No instances of the word found. Try searching again')
+            return render_template('results.html', video=video_tag, zipped_times=[], values=[], labels=[], colors=[])
 
         display_times = [str(datetime.timedelta(seconds=round(float(time)))) for time in times]
         zipped_times = zip(times, display_times)
         print(type(times[0]))
         print(times)
-        return render_template('results.html', video=video_tag, zipped_times=zipped_times)
+        return render_template('results.html', video=video_tag, zipped_times=zipped_times, values=[], labels=[], colors=[])
 
-    return render_template('results.html', video=video_tag, zipped_times=[])
+    return render_template('results.html', video=video_tag, values=[], labels=[], colors=[])
 
 if __name__ == "__main__":
     app.run(debug=True)

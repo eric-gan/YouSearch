@@ -41,6 +41,7 @@ def get_sentiment(video_tag):
         Text=transcript,
         LanguageCode='en')
     sentiment_score, sentiment = sentiment_json['SentimentScore'], sentiment_json['Sentiment']
+    return sentiment_score
     print(sentiment_score)
     print(sentiment)
 
