@@ -66,4 +66,4 @@ def results(video_tag):
     return render_template('results.html', video=video_tag, values=[], labels=[], colors=[])
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
