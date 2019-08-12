@@ -11,10 +11,8 @@ cd YouSearch
 python main.py
 ```
 
-Next, in any browser, navigate to
-```
-http://127.0.0.1:5000/
-```
+Next, in any browser, navigate to the localhost port the service is running on.
+
 ### PyTube 9.5.X
 If the current version of PyTube you are using is `pytube 9.5.X`, some changes need to be made to be able to download the YouTube videos without running into translation errors with `urllib` <br>
 Open Terminal and if PyTube is already installed, run
