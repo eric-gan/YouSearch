@@ -10,7 +10,9 @@ import youtube_to_s3, transcribe_audio, analyze_transcripts, utils
 s3 = boto3.client('s3', aws_access_key_id=utils.ACCESS_KEY, 
     aws_secret_access_key=utils.SECRET_ACCESS_KEY, region_name=utils.REGION_NAME)
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
+
 @app.route('/', methods=['GET'])
 def homepage():
     return render_template('index.html')
@@ -64,4 +66,4 @@ def results(video_tag):
     return render_template('results.html', video=video_tag, values=[], labels=[], colors=[])
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
