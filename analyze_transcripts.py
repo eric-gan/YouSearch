@@ -22,6 +22,7 @@ def get_transcripts(video_tag):
     return transcript, word_data
 
 def get_times(video_tag, user_word):
+    print(video_tag)
     transcript, word_data = get_transcripts(video_tag)
     if user_word not in transcript and user_word.capitalize() not in transcript:
         print('Cannot find word in the video')
