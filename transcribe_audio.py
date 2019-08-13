@@ -7,6 +7,8 @@ transcribe = boto3.client('transcribe', aws_access_key_id=utils.ACCESS_KEY,
 
 def transcribe_file(video_tag):
     job_uri = 'https://' + utils.BUCKET + '.s3.us-east-2.amazonaws.com/' + video_tag + '.mp4'
+    print('LOLOLOL')
+    print(video_tag)
     try:
         transcribe.start_transcription_job(
             TranscriptionJobName=video_tag,
@@ -27,5 +29,3 @@ def transcribe_file(video_tag):
     except Exception:
         print('Transcription already exists, pulling from S3 bucket')
         return
-
-#transcribe_file('https://www.youtube.com/watch?v=QU3rL5-lj2Y')
