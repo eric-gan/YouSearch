@@ -23,14 +23,14 @@ def get_transcripts(video_tag):
 
 def get_times(video_tag, user_word):
     transcript, word_data = get_transcripts(video_tag)
-    if user_word not in transcript and user_word.capitalize() not in transcript:
+    if user_word not in transcript and user_word.capitalize() not in transcript and user_word.lower() not in transcript:
         print('Cannot find word in the video')
         return
     times = []
     for word in word_data:
         if word['type'] != 'pronunciation':
             continue
-        if word['alternatives'][0]['content'] == user_word or word['alternatives'][0]['content'] == user_word.capitalize():
+        if word['alternatives'][0]['content'] == user_word or word['alternatives'][0]['content'] == user_word.capitalize() or word['alternatives'][0]['content'] == user_word.lower():
             times.append(word['start_time'])
     return times
 
