@@ -1,4 +1,6 @@
-ACCESS_KEY = 'AKIA4TOXGMUPL2ID4ENZ'
-SECRET_ACCESS_KEY = 'd/4FvtxzBOgHgvEOPefQvdL91a8RxlXZgmVZTocJ'
-BUCKET = 'yousearchdev'
-REGION_NAME = 'us-east-2'
+# Add your own AWS information here to use the AWS services necessary to run the project
+
+ACCESS_KEY = #Your access key
+SECRET_ACCESS_KEY = #Your secret access key
+BUCKET = #Name your bucket yousearchdev
+REGION_NAME = #Your region
